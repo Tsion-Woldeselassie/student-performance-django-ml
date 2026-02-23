@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: auto;">
+
+  <div class="card has-shadow mt-5">
+    <header class="card-header has-background-link-light">
+      <p class="card-header-title has-text-link-dark">
+        👤 Student Profile
+      </p>
+      <strong style="color: black;"><a href="{% url 'edit_profile' %}" class="card-header-icon" aria-label="Edit Profile">
+        <span class="icon has-text-link">
+          <i class="fas fa-edit"></i>
+        </span>
+      </a></strong>
+    </header>
+
+    <div class="card-content">
+      <div class="content">
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+        <p><strong>Full Name:</strong> {{ request.user.first_name }} {{ request.user.last_name }}</p>
+        <p><strong>Email:</strong> {{ request.user.email }}</p>
+        <hr>
+        <p><strong>Roll Number:</strong> {{ profile.roll_number }}</p>
+        <p><strong>Course:</strong> {{ profile.course }}</p>
+        <p><strong>Year:</strong> {{ profile.year }}</p>
+        <p><strong>Contact:</strong> {{ profile.contact }}</p>
+        <p><strong>Address:</strong> {{ profile.address }}</p>
+      </div>
+    </div>
+
+    <footer class="card-footer">
+      <a href="{% url 'edit_profile' %}" class="card-footer-item has-text-info">
+        ✏️ Edit Profile
+      </a>
+    
+      <a href="{% url 'change_password' %}" class="card-footer-item has-text-danger">🔑 Change Password</a>
+
+    </footer>
+  </div>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

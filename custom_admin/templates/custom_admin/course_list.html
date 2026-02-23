@@ -1,0 +1,31 @@
+{% extends "custom_admin/base.html" %}
+{% block title %}Manage Courses{% endblock %}
+{% block content %}
+<div class="box">
+  <h1 class="title">Manage Courses</h1>
+  <a class="button is-primary" href="{% url 'add-course' %}">+ Add Course</a>
+  <table class="table is-fullwidth is-striped mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for course in courses %}
+      <tr>
+        <td>{{ course.id }}</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.description|default:"-" }}</td>
+        <td>
+          <a class="button is-small is-info" href="{% url 'edit-course' course.id %}">Edit</a>
+          <a class="button is-small is-danger" href="{% url 'delete-course' course.id %}" onclick="return confirm('Are you sure?');">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

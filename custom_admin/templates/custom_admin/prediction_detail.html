@@ -1,0 +1,43 @@
+{% extends "custom_admin/base.html" %}
+
+{% block title %}Prediction Detail{% endblock %}
+
+{% block content %}
+<div class="box">
+  <h1 class="title">Prediction Detail</h1>
+
+  <table class="table is-bordered is-fullwidth">
+    <tr>
+      <th>Student Name</th>
+      <td>{{ prediction.student.user.get_full_name }}</td>
+    </tr>
+    <tr>
+      <th>Roll Number</th>
+      <td>{{ prediction.student.roll_number }}</td>
+    </tr>
+    <tr>
+      <th>Course</th>
+      <td>{{ prediction.student.course }}</td>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <td>{{ prediction.student.year }}</td>
+    </tr>
+    <tr>
+      <th>Predicted Grade</th>
+      <td>{{ prediction.predicted_grade }}</td>
+    </tr>
+    <tr>
+      <th>Probability</th>
+      <td>{{ prediction.probability|floatformat:2 }}</td>
+    </tr>
+    <tr>
+      <th>Date & Time</th>
+      <td>{{ prediction.created_at|date:"Y-m-d H:i" }}</td>
+    </tr>
+  </table>
+
+
+  <a href="{% url 'admin-dashboard' %}" class="button is-link mt-4">← Back to Dashboard</a>
+</div>
+{% endblock %}

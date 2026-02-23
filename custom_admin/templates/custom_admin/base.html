@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Panel{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        /* Make footer stick to bottom */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        body {
+            margin: 0;
+        }
+        main {
+            flex: 1;
+        }
+        footer {
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'admin-dashboard' %}">
+                <strong>Student Performance System</strong>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                {% if user.is_authenticated %}
+                    <!-- Show only when logged in -->
+                    <a class="navbar-item" href="{% url 'admin-dashboard' %}">Dashboard</a>
+                    <a class="navbar-item" href="{% url 'student-list' %}">Students</a>
+                    <a class="navbar-item" href="{% url 'predictions-list' 'all' %}">Results</a>
+                    <a class="navbar-item" href="{% url 'course-list' %}">Course</a>
+                    <a class="navbar-item" href="{% url 'admin_profile' %}">Profile</a>
+                    <a class="navbar-item" href="{% url 'admin_change_password' %}">Change Password</a>
+                {% endif %}
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        {% if user.is_authenticated %}
+                            <a class="button is-danger" href="{% url 'admin-logout' %}">Logout</a>
+                        {% else %}
+                            <a class="button is-light" href="{% url 'admin-login' %}">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="section">
+        <div class="container">
+            {% block content %}
+            <!-- Each page content goes here -->
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer has-background-dark has-text-white-ter">
+        <div class="content has-text-centered">
+            <p>
+                <span style="color: #f5f5f5; font-weight: bold;">Student Performance System</span> <br>
+                 Designed with ❤️ using Django + Machine Learning
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

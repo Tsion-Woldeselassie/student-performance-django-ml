@@ -1,0 +1,66 @@
+{% extends "custom_admin/base.html" %}
+{% load static %}
+
+{% block title %}Admin Profile{% endblock %}
+
+{% block content %}
+<div class="box" style="max-width: 600px; margin: auto;">
+  <h2 class="title is-3 has-text-centered has-text-link">👤 Admin Profile</h2>
+  <hr>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="notification {% if message.tags %}is-{{ message.tags }}{% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+
+    <!-- Username (readonly) -->
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control">
+        <input type="text" name="username" class="input" value="{{ user.username }}" readonly>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input type="email" name="email" class="input" value="{{ user.email }}" required>
+      </div>
+    </div>
+
+    <!-- First Name -->
+    <div class="field">
+      <label class="label">First Name</label>
+      <div class="control">
+        <input type="text" name="first_name" class="input" value="{{ user.first_name }}">
+      </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="field">
+      <label class="label">Last Name</label>
+      <div class="control">
+        <input type="text" name="last_name" class="input" value="{{ user.last_name }}">
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="field is-grouped is-grouped-centered mt-4">
+      <div class="control">
+        <button type="submit" class="button is-success">💾 Update Profile</button>
+      </div>
+      <div class="control">
+        <a href="{% url 'admin-dashboard' %}" class="button is-light">⬅️ Back</a>
+      </div>
+    </div>
+
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Student Performance{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body class="has-background-light">
+
+<!-- Navbar -->
+<nav class="navbar is-link is-spaced" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item has-text-weight-bold is-size-5" href="{% url 'home' %}">
+      🎓 Student Performance
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasic" class="navbar-menu">
+    <div class="navbar-start">
+     
+      {% if request.user.is_authenticated %}
+      <a class="navbar-item" href="{% url 'student_profile' %}">👤 Profile</a>
+      <a class="navbar-item" href="{% url 'student_predict' %}">📊 Predict</a>
+      <a class="navbar-item" href="{% url 'student_prediction_history' %}">📊 Prediction History</a>
+      {% else %}
+        <a class="navbar-item" href="{% url 'student_register' %}">📝 Register</a>
+      {% endif %}
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        {% if request.user.is_authenticated %}
+          <a class="button is-danger is-light" href="{% url 'student_logout' %}">🚪 Logout</a>
+        {% else %}
+          <a class="button is-primary is-light" href="{% url 'student_login' %}" style="margin-right:10px;">🔑 Login</a>
+          <a class="button is-dark is-light" href="{% url 'admin-login' %}">⚙ Admin</a>
+           
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Section -->
+<section class="section">
+  <div class="container">
+    {% for message in messages %}
+      <div class="notification is-info is-light">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer has-background-dark has-text-white-ter">
+  <div class="content has-text-centered">
+    <p>
+      <strong class="has-text-white">🎓 Student Performance System</strong> <br>
+
+    </p>
+
+  </div>
+</footer>
+
+<!-- Navbar Burger Script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const burger = document.querySelector('.navbar-burger');
+  const menu = document.querySelector('#navbarBasic');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
+  });
+});
+</script>
+
+</body>
+</html>

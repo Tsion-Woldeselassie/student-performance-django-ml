@@ -1,0 +1,48 @@
+{% extends "custom_admin/base.html" %}
+
+{% block title %}Predictions - {{ period|capfirst }}{% endblock %}
+
+{% block content %}
+<div class="box">
+  <h1 class="title">Predictions - {{ period|capfirst }}</h1>
+
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Student</th>
+        <th>Roll Number</th>
+        <th>Course</th>
+        <th>Predicted Grade</th>
+        <th>Probability</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for prediction in predictions %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ prediction.student.user.get_full_name }}</td>
+        <td>{{ prediction.student.roll_number }}</td>
+        <td>{{ prediction.student.course }}</td>
+        <td>{{ prediction.predicted_grade }}</td>
+        <td>{{ prediction.probability|floatformat:2 }}</td>
+        <td>{{ prediction.created_at|date:"Y-m-d H:i" }}</td>
+        <td>
+          <a href="{% url 'prediction-detail' prediction.id %}" class="button is-small is-info">
+            View Details
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8" class="has-text-centered">No predictions found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'admin-dashboard' %}" class="button is-primary mt-4">← Back to Dashboard</a>
+</div>
+{% endblock %}

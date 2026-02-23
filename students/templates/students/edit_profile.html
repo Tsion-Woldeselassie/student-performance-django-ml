@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 700px; margin: auto;">
+  <div class="box">
+    <h2 class="title is-3 has-text-centered has-text-link">✏️ Edit Profile</h2>
+    <hr>
+
+    <form method="POST">
+      {% csrf_token %}
+
+      <!-- First Name -->
+      <div class="field">
+        <label class="label">First Name</label>
+        <div class="control">
+          <input type="text" name="first_name" value="{{ request.user.first_name }}" class="input is-link">
+        </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="field">
+        <label class="label">Last Name</label>
+        <div class="control">
+          <input type="text" name="last_name" value="{{ request.user.last_name }}" class="input is-link">
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="field">
+        <label class="label">Email</label>
+        <div class="control">
+          <input type="email" name="email" value="{{ request.user.email }}" class="input is-info">
+        </div>
+      </div>
+
+      <!-- Contact -->
+      <div class="field">
+        <label class="label">Contact</label>
+        <div class="control">
+          <input type="text" name="contact" value="{{ profile.contact }}" class="input is-link">
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="field">
+        <label class="label">Address</label>
+        <div class="control">
+          <textarea name="address" class="textarea is-info">{{ profile.address }}</textarea>
+        </div>
+      </div>
+
+      <!-- Year -->
+      <div class="field">
+        <label class="label">Year</label>
+        <div class="control">
+          <input type="number" name="year" value="{{ profile.year }}" class="input is-primary" min="1" max="8">
+        </div>
+      </div>
+
+      <!-- Course Dropdown -->
+      <div class="field">
+        <label class="label">Course</label>
+        <div class="control">
+          <div class="select is-info is-fullwidth">
+            <select name="course">
+  {% for course in courses %}
+    <option value="{{ course.id }}" {% if profile.course.id == course.id %}selected{% endif %}>
+      {{ course.name }}
+    </option>
+  {% endfor %}
+</select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="field is-grouped is-grouped-centered mt-4">
+        <div class="control">
+          <button type="submit" class="button is-success">💾 Save Changes</button>
+        </div>
+        <div class="control">
+          <a href="{% url 'student_profile' %}" class="button is-light">⬅️ Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

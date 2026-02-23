@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="box" style="max-width: 500px; margin: auto;">
+  <h2 class="title is-3 has-text-centered has-text-primary">🔑 Student Login</h2>
+  <hr>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+
+    <!-- Username -->
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control has-icons-left">
+        {{ form.username|add_class:"input is-link" }}
+        <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+      </div>
+      <p class="help is-danger">{{ form.username.errors }}</p>
+    </div>
+<a href="{% url 'reset_password' %}">Forgot Password</a>
+    <!-- Password -->
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control has-icons-left">
+        {{ form.password|add_class:"input is-primary" }}
+        <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+      </div>
+      <p class="help is-danger">{{ form.password.errors }}</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="field is-grouped is-grouped-centered mt-4">
+      <div class="control">
+        <button class="button is-success">➡️ Login</button>
+      </div>
+      <div class="control">
+        <a href="{% url 'student_register' %}" class="button is-light">📝 Register</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

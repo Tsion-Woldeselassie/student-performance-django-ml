@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Home - Student Performance{% endblock %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero is-link is-fullheight-with-navbar">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-2 has-text-white">
+        🎓 Welcome to the Student Performance Prediction System
+      </h1>
+      <h2 class="subtitle is-5 has-text-light">
+        Register, login, and predict your performance based on key study indicators.
+      </h2>
+      <a href="{% url 'student_register' %}" class="button is-primary is-medium is-rounded m-2">📝 Get Started</a>
+      <a href="{% url 'student_login' %}" class="button is-light is-medium is-rounded m-2">🔑 Login</a>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="title has-text-centered">✨ Key Features</h2>
+    <div class="columns is-multiline is-centered mt-5">
+
+      <div class="column is-one-third">
+        <div class="card has-shadow">
+          <div class="card-content has-text-centered">
+            <span class="icon is-large has-text-info"><i class="fas fa-user-graduate fa-2x"></i></span>
+            <h3 class="title is-5 mt-2">Student Profiles</h3>
+            <p>Maintain detailed student profiles with academic info, study hours, and attendance tracking.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-one-third">
+        <div class="card has-shadow">
+          <div class="card-content has-text-centered">
+            <span class="icon is-large has-text-success"><i class="fas fa-chart-line fa-2x"></i></span>
+            <h3 class="title is-5 mt-2">Performance Prediction</h3>
+            <p>Use machine learning models to analyze study patterns and predict academic performance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-one-third">
+        <div class="card has-shadow">
+          <div class="card-content has-text-centered">
+            <span class="icon is-large has-text-warning"><i class="fas fa-database fa-2x"></i></span>
+            <h3 class="title is-5 mt-2">Data Insights</h3>
+            <p>Access dashboards with statistics, charts, and reports to better understand student trends.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Result{% endblock %}
+{% block content %}
+<div class="box">
+  <h2 class="title is-4">Prediction Result</h2>
+  <p><strong>Predicted Outcome:</strong> {{ result }}</p>
+  <p><strong>Confidence:</strong> {{ probability }}%</p>
+  <a class="button is-light mt-3" href="{% url 'student_predict' %}">Back to Predict</a>
+</div>
+{% endblock %}

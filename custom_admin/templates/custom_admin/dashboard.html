@@ -1,0 +1,72 @@
+{% extends "custom_admin/base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="box">
+  {% if messages %}
+  {% for message in messages %}
+    <div class="notification
+         {% if message.tags == 'info' %}is-success{% endif %}
+         {% if message.tags == 'error' %}is-danger{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+  <h1 class="title">Welcome to Custom Admin Dashboard</h1>
+
+  <!-- Summary Cards -->
+  <div class="columns">
+    <div class="column is-one-fourth">
+      <div class="notification is-info has-text-centered">
+        <p class="title">{{ total_students }}</p>
+        <a href="{% url 'student-list' %}"><p class="subtitle">Total Students</p></a>
+      </div>
+    </div>
+
+
+
+    <div class="column is-one-fourth">
+      <div class="notification is-warning has-text-centered">
+        <p class="title">{{ total_predictions }}</p>
+        <a href="{% url 'predictions-list' 'all' %}"><p class="subtitle">Predictions Made</p></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Predictions Summary -->
+  <div class="box">
+    <h2 class="title is-4">📊 Prediction Summary</h2>
+    <table class="table is-bordered is-striped is-fullwidth">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Predictions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+    <td>All</td>
+    <td><a href="{% url 'predictions-list' 'all' %}">{{ predictions_all }}</a></td>
+  </tr>
+         <tr>
+    <td>Today</td>
+    <td><a href="{% url 'predictions-list' 'today' %}">{{ predictions_today }}</a></td>
+  </tr>
+  <tr>
+    <td>Yesterday</td>
+    <td><a href="{% url 'predictions-list' 'yesterday' %}">{{ predictions_yesterday }}</a></td>
+  </tr>
+  <tr>
+    <td>Last 7 Days</td>
+    <td><a href="{% url 'predictions-list' 'last_7_days' %}">{{ predictions_last_7 }}</a></td>
+  </tr>
+  <tr>
+    <td>This Month</td>
+    <td><a href="{% url 'predictions-list' 'this_month' %}">{{ predictions_month }}</a></td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

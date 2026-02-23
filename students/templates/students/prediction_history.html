@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}📊 Prediction History{% endblock %}
+
+{% block content %}
+<div class="box">
+  <h2 class="title is-4">📊 Your Prediction History</h2>
+
+  <!-- Table -->
+  <table class="table is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Predicted Grade</th>
+        <th>Probability (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in predictions %}
+      <tr>
+        <td>{{ p.created_at|date:"Y-m-d H:i" }}</td>
+        <td>{{ p.predicted_grade }}</td>
+       <td>{{ p.probability|floatformat:2 }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="3" class="has-text-centered">No predictions found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+ <!-- Chart -->
+{% if predictions %}
+<div class="box">
+  <h3 class="subtitle is-5">Prediction Trend</h3>
+  <canvas id="predictionChart"></canvas>
+</div>
+{% endif %}
+
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById("predictionChart").getContext("2d");
+const predictionChart = new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: {{ labels|safe }},
+    datasets: [{
+      label: "Prediction Probability (%)",
+      data: {{ values|safe }},   // already converted to percentage
+      borderColor: "rgba(75, 192, 192, 1)",
+      backgroundColor: "rgba(75, 192, 192, 0.2)",
+      fill: true,
+      tension: 0.4,
+      pointRadius: 5,
+      pointBackgroundColor: "rgba(75, 192, 192, 1)"
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      tooltip: {
+        callbacks: {
+          afterLabel: function(context) {
+            return " Grade: " + {{ grades|safe }}[context.dataIndex];
+          }
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          callback: function(value) {
+            return value + "%";
+          }
+        }
+      }
+    }
+  }
+});
+</script>
+{% endblock %}

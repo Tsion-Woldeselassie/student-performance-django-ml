@@ -1,0 +1,41 @@
+{% extends "custom_admin/base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="box">
+  <h1 class="title">Welcome to Custom Admin Dashboard</h1>
+
+  <table class="table is-striped is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <th>Roll No</th>
+        <th>Course</th>
+        <th>Year</th>
+        <th>Contact</th>
+        <th class="has-text-centered">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ student.roll_number }}</td>
+        <td>{{ student.course }}</td>
+        <td>{{ student.year }}</td>
+        <td>{{ student.contact }}</td>
+        <td class="has-text-centered">
+          <a class="button is-small is-info" href="{% url 'admin-view-student' student.pk %}">👁 View</a>
+         <a class="button is-small is-info" href="{% url 'admin-predict-student' student.pk %}">📊 Prediction</a>
+          <a class="button is-small is-danger" href="{% url 'admin-delete-student' student.pk %}">🗑️ Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5" class="has-text-centered has-text-grey">No students found</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "custom_admin/base.html" %}
+
+{% block title %}Student Details{% endblock %}
+
+{% block content %}
+
+
+<div class="box">
+  <h2 class="title is-4">Student Details</h2>
+  <p><strong>Student Name:</strong> {{ student.user.first_name }} {{ student.user.last_name }}</p>
+  <p><strong>Student Email:</strong> {{ student.user.email }}</p>
+  <p><strong>Roll Number:</strong> {{ student.roll_number }}</p>
+  <p><strong>Course:</strong> {{ student.course }}</p>
+  <p><strong>Year:</strong> {{ student.year }}</p>
+  <p><strong>Contact:</strong> {{ student.contact }}</p>
+  <p><strong>Address:</strong> {{ student.address }}</p>
+
+  <a class="button is-link mt-3" href="{% url 'admin-dashboard' %}">⬅ Back</a>
+</div>
+{% endblock %}
+

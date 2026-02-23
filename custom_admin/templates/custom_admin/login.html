@@ -1,0 +1,41 @@
+{% extends "custom_admin/base.html" %}
+
+{% block title %}Admin Login{% endblock %}
+
+{% block content %}
+<div class="box" style="max-width: 400px; margin: auto;">
+  <h2 class="title is-4 has-text-centered">Admin Login</h2>
+    .{% if messages %}
+  {% for message in messages %}
+    <div class="notification
+         {% if message.tags == 'info' %}is-success{% endif %}
+         {% if message.tags == 'error' %}is-danger{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+  <form method="post" action="">
+    {% csrf_token %}
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control">
+        <input class="input" type="text" name="username" placeholder="Enter Username" required>
+      </div>
+    </div>
+<a href="{% url 'admin_reset_password' %}">Forgot Password</a>
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <input class="input" type="password" name="password" placeholder="Enter Password" required>
+      </div>
+    </div>
+
+    <div class="field is-grouped is-grouped-centered">
+      <div class="control">
+        <button class="button is-primary" type="submit">Login</button>
+      </div>
+    </div>
+    <a href="{% url 'home' %}">Home</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}  {# for add_class filter #}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="box" style="max-width: 700px; margin: auto;">
+  <h2 class="title is-3 has-text-centered has-text-link">📝 Student Registration</h2>
+  <hr>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+
+    <!-- Username -->
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control has-icons-left">
+        {{ form.username|add_class:"input is-link" }}
+        <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+      </div>
+      <p class="help is-danger">{{ form.username.errors }}</p>
+    </div>
+<!-- First Name -->
+<div class="field">
+  <label class="label">First Name</label>
+  <div class="control has-icons-left">
+    {{ form.first_name|add_class:"input is-info" }}
+    <span class="icon is-small is-left"><i class="fas fa-id-badge"></i></span>
+  </div>
+  <p class="help is-danger">{{ form.first_name.errors }}</p>
+</div>
+
+<!-- Last Name -->
+<div class="field">
+  <label class="label">Last Name</label>
+  <div class="control has-icons-left">
+    {{ form.last_name|add_class:"input is-info" }}
+    <span class="icon is-small is-left"><i class="fas fa-id-badge"></i></span>
+  </div>
+  <p class="help is-danger">{{ form.last_name.errors }}</p>
+</div>
+    <!-- Email -->
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control has-icons-left">
+        {{ form.email|add_class:"input is-info" }}
+        <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+      </div>
+      <p class="help is-danger">{{ form.email.errors }}</p>
+    </div>
+
+    <!-- Password -->
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control has-icons-left">
+        {{ form.password1|add_class:"input is-primary" }}
+        <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+      </div>
+      <p class="help is-danger">{{ form.password1.errors }}</p>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="field">
+      <label class="label">Confirm Password</label>
+      <div class="control has-icons-left">
+        {{ form.password2|add_class:"input is-primary" }}
+        <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+      </div>
+      <p class="help is-danger">{{ form.password2.errors }}</p>
+    </div>
+
+    <!-- Roll Number -->
+    <div class="field">
+      <label class="label">Roll Number</label>
+      <div class="control">
+        {{ form.roll_number|add_class:"input is-link" }}
+      </div>
+      <p class="help is-danger">{{ form.roll_number.errors }}</p>
+    </div>
+
+    <!-- Course -->
+    <!-- Course -->
+<div class="field">
+  <label class="label">Course</label>
+  <div class="control">
+    <div class="select is-info is-fullwidth">
+      {{ form.course }}
+    </div>
+  </div>
+  <p class="help is-danger">{{ form.course.errors }}</p>
+</div>
+
+
+    <!-- Year -->
+    <div class="field">
+      <label class="label">Year</label>
+      <div class="control">
+        {{ form.year|add_class:"input is-primary" }}
+      </div>
+      <p class="help is-danger">{{ form.year.errors }}</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="field">
+      <label class="label">Contact</label>
+      <div class="control">
+        {{ form.contact|add_class:"input is-link" }}
+      </div>
+      <p class="help is-danger">{{ form.contact.errors }}</p>
+    </div>
+
+    <!-- Address -->
+    <div class="field">
+      <label class="label">Address</label>
+      <div class="control">
+        {{ form.address|add_class:"textarea is-info" }}
+      </div>
+      <p class="help is-danger">{{ form.address.errors }}</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="field is-grouped is-grouped-centered mt-4">
+      <div class="control">
+        <button class="button is-success">✅ Register</button>
+      </div>
+      <div class="control">
+        <a href="{% url 'student_login' %}" class="button is-light">🔑 Already have an account?</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

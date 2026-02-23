@@ -1,0 +1,37 @@
+{% extends "custom_admin/base.html" %}
+
+{% block title %}Prediction History{% endblock %}
+
+{% block content %}
+<div class="box">
+  <h2 class="title is-4">Predictions for {{ student.roll_number }}</h2>
+
+  <p><strong>Course:</strong> {{ student.course }}</p>
+  <p><strong>Year:</strong> {{ student.year }}</p>
+  <hr>
+
+  <h3 class="title is-5">Previous Predictions</h3>
+  <table class="table is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Predicted Grade</th>
+        <th>Confidence</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for pr in predictions %}
+        <tr>
+          <td>{{ pr.created_at|date:"Y-m-d H:i" }}</td>
+          <td>{{ pr.predicted_grade }}</td>
+          <td>{{ pr.probability|floatformat:2 }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="3">⚠ No predictions found for this student.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a class="button is-link" href="{% url 'admin-dashboard' %}">⬅ Back to Dashboard</a>
+</div>
+{% endblock %}
