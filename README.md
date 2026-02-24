@@ -2,8 +2,8 @@
 ### Django + Machine Learning
 
 **Tsion Woldeselassie**  
-B.S. Data Science with Biology Concentration (Honors) — University of Texas at Arlington  
-M.S. Applied Statistics and Data Science — University of Texas at Arlington
+### B.S. Data Science with Biology Concentration (Honors) — University of Texas at Arlington  
+### M.S. Applied Statistics and Data Science — University of Texas at Arlington
 ---
 
 ## Why I Built This
