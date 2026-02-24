@@ -1,9 +1,7 @@
 # Student Performance Prediction System
-### Django + Machine Learning
+### Machine Learning + Django
 
-**Tsion Woldeselassie**  
-### B.S. Data Science with Biology Concentration (Honors) — University of Texas at Arlington  
-### M.S. Applied Statistics and Data Science — University of Texas at Arlington
+**Tsion Woldeselassie** 
 ---
 
 ## Why I Built This
